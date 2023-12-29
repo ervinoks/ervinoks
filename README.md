@@ -1,16 +1,14 @@
-### Hi there 👋
-
-<!--
-**ervinoks/ervinoks** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+# Hey! 🙋🏼‍♂️
+I'm a college student. C# programmer, with some knowledge in Python.
+- 👨🏼‍💻 I’m currently working on a Console Matrix Calculator as an 'NEA' project for College
+<picture>
+  <source
+    srcset="https://github-readme-stats.vercel.app/api?username=ervinoks&theme=github_dark&rank_icon=github&show_icons=true&hide=prs,issues,contribs"
+    media="(prefers-color-scheme: dark)"
+  />
+  <source
+    srcset="https://github-readme-stats.vercel.app/api?username=ervinoks&theme=github&rank_icon=github&show_icons=true&hide=prs,issues,contribs"
+    media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+  />
+  <img src="https://github-readme-stats.vercel.app/api?username=ervinoks&theme=github&rank_icon=github&show_icons=true&hide=prs,issues,contribs" />
+</picture>
