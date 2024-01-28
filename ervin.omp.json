@@ -1,0 +1,460 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "final_space": true,
+  "console_title_template": "{{.UserName}}@{{.HostName}} : {{.PWD}}",
+  "shell_integration": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "shell",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#00a88b",
+          "leading_diamond": "\u256d\u2500\ue0b6",
+          "template": "\uf120 {{ .Name }} "
+        },
+        {
+          "type": "os",
+          "style": "accordion",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#0077c2",
+          "background": "#fbfbfb",
+          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}}",
+          "properties": {
+            "alpine": "\uf300",
+            "arch": "\uf303",
+            "centos": "\uf304",
+            "debian": "\uf306",
+            "elementary": "\uf309",
+            "fedora": "\uf30b",
+            "gentoo": "\udb82\udce8",
+            "linux": "\uebc6",
+            "macos": "\uf179",
+            "manjaro": "\uf312",
+            "mint": "\uf30f",
+            "opensuse": "\uf314",
+            "raspbian": "\uf315",
+            "redhat": "\udb84\udd1b",
+            "ubuntu": "\uf31b",
+            "windows": "\ue62a",
+            "wsl": "\uebc6"
+          }
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#0077c2",
+          "background": "#fbfbfb",
+          "template": "{{ if .SSHSession }}\ueb3a {{ end }}{{ .UserName }}<#000000>@</><#e06c75>{{ .HostName }}</> ",
+          "properties": {
+            "display_host": true
+          }
+        },
+        {
+          "type": "root",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#e06c75",
+          "template": " \ue799\u2800"
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#0077c2",
+          "template": " \uf07b {{ path .Path .Location }} ",
+          "properties": {
+            "folder_separator_icon": "/",
+            "home_icon": "~",
+            "max_depth": 2,
+            "style": "agnoster_full"
+          }
+        },
+        {
+          "type": "git",
+          "style": "accordion",
+          "powerline_symbol": "\ue0b4",
+          "foreground": "#193549",
+          "background": "#caa6ff",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#ff9248{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FB{{ end }}"
+          ],
+          "template": " {{ url .UpstreamIcon .UpstreamURL }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \udb82\udd0c {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "properties": {
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          }
+        }
+      ],
+      "newline": true
+    },
+    
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "upgrade",
+          "style": "plain",
+          "foreground": "#fc4949",
+          "template": "\udb80\uddda "
+        },
+        {
+          "type": "node",
+          "background": "#303030",
+          "foreground": "#3C873A",
+          "leading_diamond": "\ue0b6",
+          "properties": {
+            "fetch_package_manager": true,
+            "npm_icon": " <#cc3a3a>\ue5fa</> ",
+            "yarn_icon": " <#348cba>\ue6a7</>"
+          },
+          "style": "diamond",
+          "template": "\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "react",
+          "background": "#61DAFB",
+          "foreground": "#20232a",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue7ba {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "python",
+          "background": "#306998",
+          "foreground": "#FFE873",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "java",
+          "background": "#0e8ac8",
+          "foreground": "#ec2729",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue738 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "dotnet",
+          "background": "#0e0e0e",
+          "foreground": "#0d6da8",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue77f {{ if .Unsupported }}\uf071{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "go",
+          "background": "#ffffff",
+          "foreground": "#06aad5",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue626 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "rust",
+          "background": "#f3f0ec",
+          "foreground": "#925837",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "dart",
+          "background": "#e1e8e9",
+          "foreground": "#055b9c",
+          "leading_diamond": " \ue0b6",
+          "style": "diamond",
+          "template": "\ue798 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "angular",
+          "background": "#ffffff",
+          "foreground": "#ce092f",
+          "leading_diamond": " \ue0b6",
+          "style": "diamond",
+          "template": "\ue753 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "nx",
+          "background": "#1e293b",
+          "foreground": "#ffffff",
+          "leading_diamond": " \ue0b6",
+          "style": "diamond",
+          "template": "{{ if .Error }}{{ .Error }}{{ else }}Nx {{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "julia",
+          "background": "#945bb3",
+          "foreground": "#359a25",
+          "leading_diamond": " \ue0b6",
+          "style": "diamond",
+          "template": "<#ca3c34>\ue624</> {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "ruby",
+          "background": "#ffffff",
+          "foreground": "#9c1006",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue791 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "azfunc",
+          "background": "#ffffff",
+          "foreground": "#5398c2",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\uf104<#f5bf45>\uf0e7</>\uf105 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "aws",
+          "background": "#565656",
+          "foreground": "#faa029",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\ue7ad {{.Profile}}{{if .Region}}@{{.Region}}{{end}}",
+          "trailing_diamond": "\ue0b4 "
+        },
+        {
+          "type": "kubectl",
+          "background": "#316ce4",
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": "\uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}",
+          "trailing_diamond": "\ue0b4"
+        },      
+        {
+          "type": "wakatime",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#303030",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4 ",
+          "template": "WAKATIME {{ secondsRound .CumulativeTotal.Seconds }}",
+          "properties": {
+            "url": "https://wakatime.com/api/v1/users/current/summaries?start=today&end=today&api_key={{ .Env.WAKATIME_API_KEY }}",
+            "cache_timeout": 10,
+            "http_timeout": 1000
+          }
+        },
+        {
+          "type": "owm",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#00859a",
+          "background_templates": [
+            "{{ if (gt .Temperature 26) }}#ff6564{{ else if (gt .Temperature 18) }}#ffa040{{ else if (gt .Temperature 10) }}#159455{{ else }}#48a3ff{{ end }}"
+          ],
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4 ",
+          "template": "{{ .Templates }} {{ .Temperature }}{{ .UnitIcon }}{{ .URL }}",
+          "templates": [
+            "{{ if eq \"\ue32b\" .Weather }}󰖔{{end}}",
+            "{{ if eq \"\ue30d\" .Weather }}󰖙{{end}}",
+            "{{ if eq \"\ue37e\" .Weather }}󰼱{{end}}",
+            "{{ if eq \"\ue302\" .Weather }}󰖕{{end}}",
+            "{{ if eq \"\ue33d\" .Weather }}󰖐{{end}}",
+            "{{ if eq \"\ue312\" .Weather }}󰖐{{end}}",
+            "{{ if eq \"\ue319\" .Weather }}󰖗{{end}}",
+            "{{ if eq \"\ue325\" .Weather }}󰖗{{end}}",
+            "{{ if eq \"\ue308\" .Weather }}󰼳{{end}}",
+            "{{ if eq \"\ue32a\" .Weather }}󰙾{{end}}",
+            "{{ if eq \"\ue30f\" .Weather }}󰼲{{end}}",
+            "{{ if eq \"\ue31a\" .Weather }}󰼶{{end}}",
+            "{{ if eq \"\ue313\" .Weather }}󰖑{{end}}"
+          ],
+          "properties": {
+            "apikey": "{{ .Env.OPENWEATHERMAP_API_KEY }}",
+            "cache_timeout": 10,
+            "http_timeout": 2000,
+            "location": "London,GB",
+            "units": "metric"
+          }
+        },
+        {
+          "type": "time",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#6168ef",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "template": "\udb80\udced {{ .CurrentDate | date .Format }} \udb80\udd50",
+          "properties": {
+            "time_format": "Monday Jan 02 \ue0bd 15:04"
+          }
+        }
+      ],
+      "overflow": "hide"
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#00a88b",
+          "template": "\u2502 "
+        },
+        {
+          "type": "spotify",
+          "style": "diamond",
+          "foreground": "#011627",
+          "background": "#1DB954",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "template": "{{ .Icon }} {{ if ne .Status \"stopped\" }}{{ .Artist }} \ue0bd {{ .Track }}{{ end }}",
+          "properties": {
+            "playing_icon": "\uf1bc"
+          }
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "command",
+          "foreground": "#ffffff",
+          "background": "#39577D",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": " ",
+          "properties": {
+            "command": "if ! res=$(curl -s wttr.in -Gsm2 --data-urlencode \"format=j1\"); then echo 󰖪; exit 0; fi; res=$(jq .current_condition[0] -c <<<\"$res\"); temp=$(jq -r .temp_C <<<\"$res\"); feels_like=$(jq -r .FeelsLikeC <<<\"$res\"); wind_dir=$(jq -r .winddir16Point <<<\"$res\"); humidity=$(jq -r .humidity <<<\"$res\"); feels_string=''; if [[ $temp != $feels_like ]]; then feels_string=\"<#2C4564>\ue0b6</><#ffffff,#2C4564>feels like $feels_like°C</><#2C4564,transparent>\ue0b4 </>\"; fi; WIND_DIR_MAP='{\"N\":\"\",\"NNE\":\"\",\"NE\":\"\",\"ENE\":\"\",\"E\":\"\",\"ESE\":\"\",\"SE\":\"\",\"SSE\":\"\",\"S\":\"\",\"SSW\":\"\",\"SW\":\"\",\"WSW\":\"\",\"W\":\"\",\"WNW\":\"\",\"NW\":\"\",\"NNW\":\"\"}'; WWC_MAP='{\"113\":\"Sunny\",\"116\":\"PartlyCloudy\",\"119\":\"Cloudy\",\"122\":\"VeryCloudy\",\"143\":\"Fog\",\"176\":\"LightShowers\",\"179\":\"LightSleetShowers\",\"182\":\"LightSleet\",\"185\":\"LightSleet\",\"200\":\"ThunderyShowers\",\"227\":\"LightSnow\",\"230\":\"HeavySnow\",\"248\":\"Fog\",\"260\":\"Fog\",\"263\":\"LightShowers\",\"266\":\"LightRain\",\"281\":\"LightSleet\",\"284\":\"LightSleet\",\"293\":\"LightRain\",\"296\":\"LightRain\",\"299\":\"HeavyShowers\",\"302\":\"HeavyRain\",\"305\":\"HeavyShowers\",\"308\":\"HeavyRain\",\"311\":\"LightSleet\",\"314\":\"LightSleet\",\"317\":\"LightSleet\",\"320\":\"LightSnow\",\"323\":\"LightSnowShowers\",\"326\":\"LightSnowShowers\",\"329\":\"HeavySnow\",\"332\":\"HeavySnow\",\"335\":\"HeavySnowShowers\",\"338\":\"HeavySnow\",\"350\":\"LightSleet\",\"353\":\"LightShowers\",\"356\":\"HeavyShowers\",\"359\":\"HeavyRain\",\"362\":\"LightSleetShowers\",\"365\":\"LightSleetShowers\",\"368\":\"LightSnowShowers\",\"371\":\"HeavySnowShowers\",\"374\":\"LightSleetShowers\",\"377\":\"LightSleet\",\"386\":\"ThunderyShowers\",\"389\":\"ThunderyHeavyRain\",\"392\":\"ThunderySnowShowers\",\"395\":\"HeavySnowShowers\"}'; NF_DAY_MAP='{\"Unknown\":\"😶‍🌫️\",\"Cloudy\":\"󰖐\",\"Fog\":\"󰖑\",\"HeavyRain\":\"󰖖\",\"HeavyShowers\":\"󰖖\",\"HeavySnow\":\"󰼶\",\"HeavySnowShowers\":\"󰼶\",\"LightRain\":\"󰼳\",\"LightShowers\":\"󰼳\",\"LightSleet\":\"󰖒\",\"LightSleetShowers\":\"󰖒\",\"LightSnow\":\"󰼴\",\"LightSnowShowers\":\"󰼵\",\"PartlyCloudy\":\"󰖕\",\"Sunny\":\"󰖙\",\"ThunderyHeavyRain\":\"󰙾\",\"ThunderyShowers\":\"󰙾\",\"ThunderySnowShowers\":\"󰙾\",\"VeryCloudy\":\"󰖐\"}'; NF_NIGHT_MAP='{\"Unknown\":\"😶‍🌫️\",\"Cloudy\":\"󰼱\",\"Fog\":\"󰖑\",\"HeavyRain\":\"󰖖\",\"HeavyShowers\":\"󰖖\",\"HeavySnow\":\"󰖘\",\"HeavySnowShowers\":\"󰖘\",\"LightRain\":\"󰖖\",\"LightShowers\":\"󰖗\",\"LightSleet\":\"󰖒\",\"LightSleetShowers\":\"󰖒\",\"LightSnow\":\"󰖘\",\"LightSnowShowers\":\"󰖘\",\"PartlyCloudy\":\"󰼱\",\"Sunny\":\"󰖔\",\"ThunderyHeavyRain\":\"󰙾\",\"ThunderyShowers\":\"󰙾\",\"ThunderySnowShowers\":\"󰙿\",\"VeryCloudy\":\"󰖐\"}'; wind_icon=$(jq -r \".$wind_dir\" <<<\"$WIND_DIR_MAP\"); cur_h=\"$(date +'%H')\"; wwc=\"$(jq '.weatherCode' <<<\"$res\")\"; if [[ $cur_h -gt 18 || $cur_h -lt 6 ]]; then icon=$(jq -r \".$(echo \"$WWC_MAP\" | jq -r \".$wwc\")\" <<<\"$NF_DAY_MAP\"); else icon=$(jq -r \".$(echo \"$WWC_MAP\" | jq -r \".$wwc\")\" <<<\"$NF_NIGHT_MAP\"); fi; weather=\"$icon $temp°C $wind_icon $feels_string<#566A83,transparent>\ue0b6</><#ffffff,#566A83>$humidity% humidity</><#566A83,transparent>\ue0b4</>\"; echo \"$weather\"",            
+            "shell": "bash"
+          },
+          "style": "diamond",
+          "template": "{{ .Output }}"
+        },
+        {
+          "type": "battery",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#f36943",
+          "background_templates": [
+            "{{if eq \"Charging\" .State.String}}#00c2ab{{end}}",
+            "{{if eq \"Discharging\" .State.String}}#efa161{{end}}",
+            "{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+          ],
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4 ",
+          "template": "{{ if eq \"Full\" .State.String }}\ueb2d{{ else }}{{ .Templates }} {{ .Percentage }}%{{ end }}",
+          "templates": [
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 5) }}\udb80\udc83{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 10) }}\udb80\udc8e{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 20) }}\udb80\udc7a{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 30) }}\udb80\udc7b{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 40) }}\udb80\udc7c{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 50) }}\udb80\udc7d{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 60) }}\udb80\udc7e{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 70) }}\udb80\udc7f{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 80) }}\udb80\udc80{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 90) }}\udb80\udc81{{ end }}",
+            "{{ if and (eq \"Discharging\" .State.String) (lt .Percentage 100) }}\udb80\udc82{{ end }}",
+            "{{ if eq \"Discharging\" .State.String }}\udb80\udc79{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 10) }}\udb82\udc9f{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 20) }}\udb82\udc9c{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 30) }}\udb80\udc86{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 40) }}\udb80\udc87{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 50) }}\udb80\udc88{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 60) }}\udb82\udc9d{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 70) }}\udb80\udc89{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 80) }}\udb82\udc9e{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 90) }}\udb80\udc8a{{ end }}",
+            "{{ if and (eq \"Charging\" .State.String) (lt .Percentage 100) }}\udb80\udc8b{{ end }}",
+            "{{ if eq \"Charging\" .State.String }}\udb80\udc84{{ end }}"
+          ],
+          "templates_logic": "first_match"
+        },
+        {
+          "type": "connection",
+          "style": "diamond",
+          "invert_powerline": true,
+          "foreground": "#ffffff",
+          "background": "#39577D",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b4 ",
+          "template": "{{ if eq .Type \"wifi\" }}\udb82\udd28 {{.SSID}}{{ else if eq .Type \"ethernet\" }}\udb80\ude00 {{.Type}}{{ else if eq .Type \"bluetooth\" }}\uf293 {{.Type}}{{ else if eq .Type \"cellular\"}}\udb81\udca2 {{.Type}}{{ end }}"
+        },
+        {
+          "type": "sysinfo",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#39577D",
+          "leading_diamond": "\ue0b6",
+          "template": "<#9fa9d4>\ue266</> {{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1000000000.0) }}/{{ (div .PhysicalTotalMemory 1000000000.0) }}GB <#2C4564>\ue0b6</><#ffffff,#2C4564>{{ round .PhysicalPercentUsed .Precision }}%</><#2C4564,transparent>\ue0b4</>"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#FFD54F",
+          "template": "<#00a88b>\u2570\u2500</> {{if .Root}}#{{else}}${{end}}"
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "status",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#303030",
+          "leading_diamond": "\ue0b6",
+          "template": "{{ if gt .Code 0 }}<#fa8f8b>\uf057</>{{ else }}<#ccffbe>\uf058</>{{ end }} ",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "foreground": "#ffffff",
+          "background": "#303030",
+          "trailing_diamond": "\ue0b4",
+          "template": "{{ .FormattedMs }}",
+          "properties": {
+            "always_enabled": true,
+            "style": "austin"
+          }
+        }
+      ]
+    }
+  ]
+}
