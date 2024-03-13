@@ -343,19 +343,6 @@
       "alignment": "right",
       "segments": [
         {
-          "type": "command",
-          "foreground": "#ffffff",
-          "background": "#39577D",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": " ",
-          "properties": {
-            "command": "if ! res=$(curl -s wttr.in -Gsm2 --data-urlencode \"format=j1\"); then echo 󰖪; exit 0; fi; res=$(jq .current_condition[0] -c <<<\"$res\"); temp=$(jq -r .temp_C <<<\"$res\"); feels_like=$(jq -r .FeelsLikeC <<<\"$res\"); wind_dir=$(jq -r .winddir16Point <<<\"$res\"); humidity=$(jq -r .humidity <<<\"$res\"); feels_string=''; if [[ $temp != $feels_like ]]; then feels_string=\"<#2C4564>\ue0b6</><#ffffff,#2C4564>feels like $feels_like°C</><#2C4564,transparent>\ue0b4 </>\"; fi; WIND_DIR_MAP='{\"N\":\"\",\"NNE\":\"\",\"NE\":\"\",\"ENE\":\"\",\"E\":\"\",\"ESE\":\"\",\"SE\":\"\",\"SSE\":\"\",\"S\":\"\",\"SSW\":\"\",\"SW\":\"\",\"WSW\":\"\",\"W\":\"\",\"WNW\":\"\",\"NW\":\"\",\"NNW\":\"\"}'; WWC_MAP='{\"113\":\"Sunny\",\"116\":\"PartlyCloudy\",\"119\":\"Cloudy\",\"122\":\"VeryCloudy\",\"143\":\"Fog\",\"176\":\"LightShowers\",\"179\":\"LightSleetShowers\",\"182\":\"LightSleet\",\"185\":\"LightSleet\",\"200\":\"ThunderyShowers\",\"227\":\"LightSnow\",\"230\":\"HeavySnow\",\"248\":\"Fog\",\"260\":\"Fog\",\"263\":\"LightShowers\",\"266\":\"LightRain\",\"281\":\"LightSleet\",\"284\":\"LightSleet\",\"293\":\"LightRain\",\"296\":\"LightRain\",\"299\":\"HeavyShowers\",\"302\":\"HeavyRain\",\"305\":\"HeavyShowers\",\"308\":\"HeavyRain\",\"311\":\"LightSleet\",\"314\":\"LightSleet\",\"317\":\"LightSleet\",\"320\":\"LightSnow\",\"323\":\"LightSnowShowers\",\"326\":\"LightSnowShowers\",\"329\":\"HeavySnow\",\"332\":\"HeavySnow\",\"335\":\"HeavySnowShowers\",\"338\":\"HeavySnow\",\"350\":\"LightSleet\",\"353\":\"LightShowers\",\"356\":\"HeavyShowers\",\"359\":\"HeavyRain\",\"362\":\"LightSleetShowers\",\"365\":\"LightSleetShowers\",\"368\":\"LightSnowShowers\",\"371\":\"HeavySnowShowers\",\"374\":\"LightSleetShowers\",\"377\":\"LightSleet\",\"386\":\"ThunderyShowers\",\"389\":\"ThunderyHeavyRain\",\"392\":\"ThunderySnowShowers\",\"395\":\"HeavySnowShowers\"}'; NF_DAY_MAP='{\"Unknown\":\"😶‍🌫️\",\"Cloudy\":\"󰖐\",\"Fog\":\"󰖑\",\"HeavyRain\":\"󰖖\",\"HeavyShowers\":\"󰖖\",\"HeavySnow\":\"󰼶\",\"HeavySnowShowers\":\"󰼶\",\"LightRain\":\"󰼳\",\"LightShowers\":\"󰼳\",\"LightSleet\":\"󰖒\",\"LightSleetShowers\":\"󰖒\",\"LightSnow\":\"󰼴\",\"LightSnowShowers\":\"󰼵\",\"PartlyCloudy\":\"󰖕\",\"Sunny\":\"󰖙\",\"ThunderyHeavyRain\":\"󰙾\",\"ThunderyShowers\":\"󰙾\",\"ThunderySnowShowers\":\"󰙾\",\"VeryCloudy\":\"󰖐\"}'; NF_NIGHT_MAP='{\"Unknown\":\"😶‍🌫️\",\"Cloudy\":\"󰼱\",\"Fog\":\"󰖑\",\"HeavyRain\":\"󰖖\",\"HeavyShowers\":\"󰖖\",\"HeavySnow\":\"󰖘\",\"HeavySnowShowers\":\"󰖘\",\"LightRain\":\"󰖖\",\"LightShowers\":\"󰖗\",\"LightSleet\":\"󰖒\",\"LightSleetShowers\":\"󰖒\",\"LightSnow\":\"󰖘\",\"LightSnowShowers\":\"󰖘\",\"PartlyCloudy\":\"󰼱\",\"Sunny\":\"󰖔\",\"ThunderyHeavyRain\":\"󰙾\",\"ThunderyShowers\":\"󰙾\",\"ThunderySnowShowers\":\"󰙿\",\"VeryCloudy\":\"󰖐\"}'; wind_icon=$(jq -r \".$wind_dir\" <<<\"$WIND_DIR_MAP\"); cur_h=\"$(date +'%H')\"; wwc=\"$(jq '.weatherCode' <<<\"$res\")\"; if [[ $cur_h -gt 18 || $cur_h -lt 6 ]]; then icon=$(jq -r \".$(echo \"$WWC_MAP\" | jq -r \".$wwc\")\" <<<\"$NF_DAY_MAP\"); else icon=$(jq -r \".$(echo \"$WWC_MAP\" | jq -r \".$wwc\")\" <<<\"$NF_NIGHT_MAP\"); fi; weather=\"$icon $temp°C $wind_icon $feels_string<#566A83,transparent>\ue0b6</><#ffffff,#566A83>$humidity% humidity</><#566A83,transparent>\ue0b4</>\"; echo \"$weather\"",            
-            "shell": "bash"
-          },
-          "style": "diamond",
-          "template": "{{ .Output }}"
-        },
-        {
           "type": "battery",
           "style": "diamond",
           "foreground": "#ffffff",
