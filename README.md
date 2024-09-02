@@ -1,5 +1,5 @@
 # Hey! 🙋🏼‍♂️
-I'm a college student. C# programmer, with some knowledge in Python.
+I'm a university student at Surrey. C# programmer, with some knowledge in Python.
 - 👨🏼‍💻 I’m currently working on nothing!
 <picture>
   <source
