@@ -1,6 +1,6 @@
 # Hey! 🙋🏼‍♂️
 I'm a university student at Surrey. Comfortable in C# and Java, with some knowledge in Python.
-- 🎓 Studying Computer Science BSc, first year.
+- 🎓 Studying Computer Science BSc, second year.
 - 👨🏼‍💻 I’m currently working on nothing!
 - 💭 Learning Java!
 <picture>
